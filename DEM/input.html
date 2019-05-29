@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input id='input'>
+    <input id="RobotEvents" type="text" placeholder="Prueba escribir" />
+<div>altKey: <span id='output'>false</span></div>
+<script>
+  var input = "r";
+  var output = document.getElementById('output');
+
+  input.onkeydown = input.onkeyup = function(event) {
+
+  console.log(event);
+    output.textContent = event.key;
+  };
+
+  ;(function() {
+const ESCAPE_KEY = 'Escape'
+
+function robotController(e)
+{
+    if (e.isTrusted) {
+        console.warn('No eres un robot')
+        e.preventDefault()
+        return
+    }
+    if (ESCAPE_KEY == e.code) {
+        console.log('Robot ha presionado ESC')
+    }
+}
+const reI = document.querySelector('#RobotEvents')
+
+reI.addEventListener('keypress', robotController, false)
+reI.dispatchEvent(new KeyboardEvent('keypress', {key: ESCAPE_KEY, code: ESCAPE_KEY}))
+}())
+</script>
+
+  </body>
+</html>
